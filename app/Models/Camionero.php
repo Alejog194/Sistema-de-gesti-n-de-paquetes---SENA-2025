@@ -18,4 +18,19 @@ class Camionero extends Model
         'licencia',
         'telefono',
     ];
+
+    public function camiones()
+    {
+        return $this->belongsToMany(Camion::class, 'camioneros_camiones');
+    }
+
+    public function paquetes()
+    {
+        return $this->hasMany(Paquete::class, 'camionero_id');
+    }
+
+    public function getNomreCompletoAttribute()
+    {
+        return $this->nombre . ' ' . $this->apellido;
+    }
 }
