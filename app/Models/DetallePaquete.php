@@ -13,7 +13,7 @@ class DetallePaquete extends Model
     /**  
      * 
     */
-
+    protected $table = 'detalles_paquetes';
     protected $fillable = [
     'paquete_id', //clave foránea del paquete.
     'tipo_mercancia_id', //clave foránea del tipo de mercancía.

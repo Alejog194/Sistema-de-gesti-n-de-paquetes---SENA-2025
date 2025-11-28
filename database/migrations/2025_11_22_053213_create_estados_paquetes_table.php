@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('estados_paquetes', function (Blueprint $table) {
             $table->id();
+            $table->string('estado', 45);
             $table->timestamps();
         });
     }

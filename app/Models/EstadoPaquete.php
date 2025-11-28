@@ -12,6 +12,7 @@ class EstadoPaquete extends Model
     /** 
     * los atributos que pueden ser llenado masivamente
     */
+    protected $table = 'estados_paquetes';
     protected $fillable = ['estado'];
 
     public function paquetes()

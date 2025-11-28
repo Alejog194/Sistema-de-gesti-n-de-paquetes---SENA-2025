@@ -12,6 +12,7 @@ class TipoMercancia extends Model
     /** 
      * Los atributos que pueden ser llenados masivamente.
     */
+    protected $table = 'tipo_mercancia';
     protected $fillable = [
         'tipo'
     ];

@@ -6,17 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    /** 
+     * Run the migrations. 
+     */ 
     public function up(): void
     {
         Schema::create('paquetes', function (Blueprint $table) {
             $table->id();
-            $table->foreIgn('camionero_id')->constrained('camioneros'); //clave foránea de la tabla camioneros.
-            $table->foreIgn('estado_id')->constrained('estados_paquetes'); //clave foránea de la tabla estados_paquetes.
-            //$table->foreIgn('tipo_mercancia_id')->constrained('tipo_mercancia');    
-            $table->string('direccion', 25);   // VARCHAR(25) para la dirección de entrega.     
+            $table->foreignId('camionero_id')->constrained('camioneros');
+            $table->foreignId('estado_id')->constrained('estados_paquetes');
+            // $table->foreignId('tipo_mercancia_id')->constrained('tipo_mercancia');
+            $table->string('direccion', 25);
             $table->timestamps();
         });
     }

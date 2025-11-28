@@ -17,6 +17,8 @@ class Camionero extends Model
         'fecha_nacimiento',
         'licencia',
         'telefono',
+        'email',
+        'direccion'
     ];
 
     public function camiones()

@@ -12,6 +12,7 @@ class Camion extends Model
     /**         
      * los atributos que pueden ser llenados masivamente.
      */
+    protected $table = 'camiones';
     protected $fillable = [
         'camionero_id', //dueño principal del camión.
         'placa',

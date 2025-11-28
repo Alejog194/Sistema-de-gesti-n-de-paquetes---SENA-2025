@@ -13,11 +13,9 @@ return new class extends Migration
     {
         Schema::create('camiones', function (Blueprint $table) {
             $table->id();
-            $table->foreegnId('camionero_id')->constrained('camioneros'); //clave foránea de la tabla camioneros.
-            $table->string('placa',10);
-            $table->string('modelo',45);
-           //$table->string('marca',45);
-           // $table->integer('capacidad_kg');   
+            $table->foreignId('camionero_id')->constrained(); // Forma correcta y simple
+            $table->string('placa', 10);
+            $table->string('modelo', 45);
             $table->timestamps();
         });
     }
@@ -30,3 +28,4 @@ return new class extends Migration
         Schema::dropIfExists('camiones');
     }
 };
+

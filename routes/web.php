@@ -1,6 +1,11 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CamioneroController;
+use App\Http\Controllers\CamionController;
+use App\Http\Controllers\PaqueteController;
+use App\Http\Controllers\TipoMercanciaController;
+use App\Http\Controllers\DetallePaqueteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +21,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+// CRUD para camioneros
+Route::resource('camioneros', CamioneroController::class);
+Route::resource('camiones', CamionController::class)->parameters([
+    'camiones' => 'camion'
+]);
+Route::resource('paquetes', PaqueteController::class);
+Route::resource('tipo-mercancia', TipoMercanciaController::class);
+Route::resource('detalle-paquete', DetallePaqueteController::class);
