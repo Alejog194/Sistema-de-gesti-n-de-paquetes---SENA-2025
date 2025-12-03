@@ -30,54 +30,54 @@ class TipoMercanciaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipo' => 'required|string|max:255|unique:tipo_mercancia'
+            'tipo' => 'required|string|max:45|unique:tipo_mercancia,tipo',
         ]);
 
         TipoMercancia::create($request->all());
 
-        return redirect()->route('tipo-mercancia.index')
+        return redirect()->route('tipo_mercancia.index')
             ->with('success', 'Tipo de mercancía creado exitosamente.');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(TipoMercancia $tipoMercanium)
+    public function show(TipoMercancia $tipoMercancia)
     {
-        return view('tipo_mercancia.show', compact('tipoMercanium'));
+        return view('tipo_mercancia.show', compact('tipoMercancia'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(TipoMercancia $tipoMercanium)
+    public function edit(TipoMercancia $tipoMercancia)
     {
-        return view('tipo_mercancia.edit', compact('tipoMercanium'));
+        return view('tipo_mercancia.edit', compact('tipoMercancia'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, TipoMercancia $tipoMercanium)
+    public function update(Request $request, TipoMercancia $tipoMercancia)
     {
         $request->validate([
-            'tipo' => 'required|string|max:255|unique:tipo_mercancia,tipo,' . $tipoMercanium->id
+            'tipo' => 'required|string|max:45|unique:tipo_mercancia,tipo,' . $tipoMercancia->id,
         ]);
 
-        $tipoMercanium->update($request->all());
+        $tipoMercancia->update($request->all());
 
-        return redirect()->route('tipo-mercancia.index')
+        return redirect()->route('tipo_mercancia.index')
             ->with('success', 'Tipo de mercancía actualizado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoMercancia $tipoMercanium)
+    public function destroy(TipoMercancia $tipoMercancia)
     {
-        $tipoMercanium->delete();
+        $tipoMercancia->delete();
 
-        return redirect()->route('tipo-mercancia.index')
+        return redirect()->route('tipo_mercancia.index')
             ->with('success', 'Tipo de mercancía eliminado exitosamente.');
     }
 }

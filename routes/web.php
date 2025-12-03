@@ -6,26 +6,33 @@ use App\Http\Controllers\CamionController;
 use App\Http\Controllers\PaqueteController;
 use App\Http\Controllers\TipoMercanciaController;
 use App\Http\Controllers\DetallePaqueteController;
+use App\Http\Controllers\EstadoPaqueteController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
+// Ruta PÚBLICA para visitantes (sin login)
 Route::get('/', function () {
-    return view('welcome');
+    return view('home'); // Página de bienvenida pública
 });
-// CRUD para camioneros
-Route::resource('camioneros', CamioneroController::class);
-Route::resource('camiones', CamionController::class)->parameters([
-    'camiones' => 'camion'
-]);
-Route::resource('paquetes', PaqueteController::class);
-Route::resource('tipo-mercancia', TipoMercanciaController::class);
-Route::resource('detalle-paquete', DetallePaqueteController::class);
+
+// Ruta de prueba simple (pública)
+Route::get('/test-simple', function() {
+    return 'Laravel funciona!';
+});
+
+// Rutas de autenticación (login/register)
+Auth::routes();
+
+// 🔒 COMENTAR ESTO PARA HACER RUTAS PÚBLICAS TEMPORALMENTE
+// Route::middleware(['auth'])->group(function () {
+    // Dashboard principal después del login
+    Route::get('/home', function() {
+        return view('dashboard');
+    })->name('home');
+    
+    // CRUDs protegidos
+    Route::resource('camioneros', CamioneroController::class);
+    Route::resource('camiones', CamionController::class);
+    Route::resource('paquetes', PaqueteController::class);
+    Route::resource('tipo-mercancia', TipoMercanciaController::class);
+    Route::resource('detalle-paquetes', DetallePaqueteController::class);
+    Route::resource('estado-paquetes', EstadoPaqueteController::class); // Nueva ruta para EstadoPaquete
+// }); // <-- ESTE CIERRE TAMBIÉN VA COMENTADO

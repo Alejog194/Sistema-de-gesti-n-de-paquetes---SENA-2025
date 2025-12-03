@@ -30,7 +30,7 @@ class CamioneroController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'documento' => 'required|string|max:20|unique:camioneros,',
+            'documento' => 'required|string|max:20|unique:camioneros,documento',
             'nombre'    => 'required|string|max:255',
             'apellido'  => 'required|string|max:255',
             'fecha_nacimiento' => 'required|date',

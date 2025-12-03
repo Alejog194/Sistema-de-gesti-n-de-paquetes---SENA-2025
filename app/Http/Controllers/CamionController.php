@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Camion;
-use App\Models\Camionero;
 use Illuminate\Http\Request;
 
 class CamionController extends Controller
@@ -13,7 +12,7 @@ class CamionController extends Controller
      */
     public function index()
     {
-        $camiones = Camion::with('camionero')->get();
+        $camiones = Camion::all();
         return view('camiones.index', compact('camiones'));
     }
 
@@ -22,8 +21,7 @@ class CamionController extends Controller
      */
     public function create()
     {
-        $camioneros = Camionero::all();
-        return view('camiones.create', compact('camioneros'));
+        return view('camiones.create');
     }
 
     /**
@@ -32,9 +30,8 @@ class CamionController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'placa' => 'required|string|max:10|unique:camiones',
-            'modelo' => 'required|string|max:45',
-            'camionero_id' => 'required|exists:camioneros,id'
+            'placa' => 'required|string|max:10|unique:camiones,placa',
+            'modelo' => 'required|string|max:10',
         ]);
 
         Camion::create($request->all());
@@ -56,8 +53,7 @@ class CamionController extends Controller
      */
     public function edit(Camion $camion)
     {
-        $camioneros = Camionero::all();
-        return view('camiones.edit', compact('camion', 'camioneros'));
+        return view('camiones.edit', compact('camion'));
     }
 
     /**
@@ -67,8 +63,7 @@ class CamionController extends Controller
     {
         $request->validate([
             'placa' => 'required|string|max:10|unique:camiones,placa,' . $camion->id,
-            'modelo' => 'required|string|max:45',
-            'camionero_id' => 'required|exists:camioneros,id'
+            'modelo' => 'required|string|max:10',
         ]);
 
         $camion->update($request->all());

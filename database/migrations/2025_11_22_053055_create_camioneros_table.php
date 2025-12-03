@@ -11,16 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('camioneros', function (Blueprint $table) {
-            $table->id();
-            $table->string('documento',15);
-            $table->string('nombre', 45);
-            $table->string('apellido', 45);
-            $table->date('fecha_nacimiento');
-            $table->string('licencia',10);
-            $table->string('telefono',15);
-            $table->timestamps();
-        });
+    Schema::create('camioneros', function (Blueprint $table) {
+        $table->id();
+        $table->string('documento', 20)->unique();  // Aumentado a 20 y único
+        $table->string('nombre', 255);              // Aumentado a 255
+        $table->string('apellido', 255);            // Aumentado a 255
+        $table->date('fecha_nacimiento');
+        $table->string('licencia', 20);             // Aumentado a 20
+        $table->string('telefono', 20);             // Aumentado a 20
+        $table->string('email', 255)->nullable();   // AGREGADO
+        $table->text('direccion')->nullable();      // AGREGADO
+        $table->timestamps();
+    });
     }
 
     /**

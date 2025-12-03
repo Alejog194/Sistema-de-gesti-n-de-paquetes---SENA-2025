@@ -9,41 +9,33 @@ class Camion extends Model
 {
     use HasFactory;
 
-    /**         
-     * los atributos que pueden ser llenados masivamente.
+    /**
+     * The table associated with the model.
      */
     protected $table = 'camiones';
+
+    /**
+     * The attributes that are mass assignable.
+     */
     protected $fillable = [
-        'camionero_id', //dueño principal del camión.
         'placa',
         'modelo'
-        //'marca',
-        //'capacidad_kg',
     ];
 
     /**
-     * Un camion pertenece a un camionero (dueño principal).
-     * relacion uno a muchos inversa.
-     */
-    public function camionero()
-    {
-        return $this->belongsTo(Camionero::class, 'camionero_id');
-    }
-
-    /**     
-     * Un camión es manejado por muchos camioneros 
-     * Relación muchos a muchos a través de la tabla pivote.
+     * Un camión puede ser manejado por muchos camioneros.
+     * Relación muchos a muchos a través de la tabla intermedia.
      */
     public function camioneros()
     {
         return $this->belongsToMany(Camionero::class, 'camioneros_camiones');
-    }   
+    }
 
     /**
-     * Obtener la descripción completa del camión.
+     * Get the camion's full description.
      */
     public function getDescripcionCompletaAttribute()
     {
-        return $this->modelo . ' - ' . $this->placa;
+        return $this->placa . ' - ' . $this->modelo;
     }
 }

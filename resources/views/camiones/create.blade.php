@@ -2,35 +2,44 @@
 
 @section('content')
 <div class="container">
-    <h1>Crear Nuevo Camión</h1>
-    
-    <form action="{{ route('camiones.store') }}" method="POST">
-        @csrf
-        
-        <div class="form-group mb-3">
-            <label for="placa">Placa:</label>
-            <input type="text" name="placa" class="form-control" required maxlength="10">
-        </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">➕ Registrar Nuevo Camión</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('camiones.store') }}">
+                        @csrf
 
-        <div class="form-group mb-3">
-            <label for="modelo">Modelo:</label>
-            <input type="text" name="modelo" class="form-control" required maxlength="45">
-        </div>
+                        <!-- Placa -->
+                        <div class="mb-3">
+                            <label for="placa" class="form-label">Placa *</label>
+                            <input type="text" class="form-control" id="placa" name="placa" 
+                                   required maxlength="10" placeholder="ABC-123">
+                            <div class="form-text">Máximo 10 caracteres</div>
+                        </div>
 
-        <div class="form-group mb-3">
-            <label for="camionero_id">Camionero (Dueño):</label>
-            <select name="camionero_id" class="form-control" required>
-                <option value="">Seleccione un camionero</option>
-                @foreach($camioneros as $camionero)
-                    <option value="{{ $camionero->id }}">
-                        {{ $camionero->nombre }} {{ $camionero->apellido }} - {{ $camionero->documento }}
-                    </option>
-                @endforeach
-            </select>
+                        <!-- Modelo -->
+                        <div class="mb-3">
+                            <label for="modelo" class="form-label">Modelo *</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" 
+                                   required maxlength="10" placeholder="Ej: F-150">
+                            <div class="form-text">Máximo 10 caracteres</div>
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ route('camiones.index') }}" class="btn btn-secondary">
+                                ← Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                ✅ Guardar Camión
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-        <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="{{ route('camiones.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
+    </div>
 </div>
 @endsection

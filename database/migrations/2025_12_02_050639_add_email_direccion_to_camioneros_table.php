@@ -11,11 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('camiones', function (Blueprint $table) {
-            $table->id();
-            $table->string('placa', 10);
-            $table->string('modelo', 10); // VARCHAR(10) según diagrama
-            $table->timestamps();
+        Schema::table('camioneros', function (Blueprint $table) {
+            //
         });
     }
 
@@ -24,7 +21,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('camiones');
+        Schema::table('camioneros', function (Blueprint $table) {
+            //
+        });
     }
 };
-

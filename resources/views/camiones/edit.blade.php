@@ -2,36 +2,43 @@
 
 @section('content')
 <div class="container">
-    <h1>Editar Camión</h1>
-    
-    <form action="{{ route('camiones.update', $camion->id) }}" method="POST">
-        @csrf
-        @method('PUT')
-        
-        <div class="form-group mb-3">
-            <label for="placa">Placa:</label>
-            <input type="text" name="placa" class="form-control" value="{{ $camion->placa }}" required maxlength="10">
-        </div>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="mb-0">✏️ Editar Camión: {{ $camion->placa }}</h4>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action="{{ route('camiones.update', $camion->id) }}">
+                        @csrf
+                        @method('PUT')
 
-        <div class="form-group mb-3">
-            <label for="modelo">Modelo:</label>
-            <input type="text" name="modelo" class="form-control" value="{{ $camion->modelo }}" required maxlength="45">
-        </div>
+                        <!-- Placa -->
+                        <div class="mb-3">
+                            <label for="placa" class="form-label">Placa *</label>
+                            <input type="text" class="form-control" id="placa" name="placa" 
+                                   value="{{ $camion->placa }}" required maxlength="10">
+                        </div>
 
-        <div class="form-group mb-3">
-            <label for="camionero_id">Camionero (Dueño):</label>
-            <select name="camionero_id" class="form-control" required>
-                <option value="">Seleccione un camionero</option>
-                @foreach($camioneros as $camionero)
-                    <option value="{{ $camionero->id }}" {{ $camion->camionero_id == $camionero->id ? 'selected' : '' }}>
-                        {{ $camionero->nombre }} {{ $camionero->apellido }} - {{ $camionero->documento }}
-                    </option>
-                @endforeach
-            </select>
+                        <!-- Modelo -->
+                        <div class="mb-3">
+                            <label for="modelo" class="form-label">Modelo *</label>
+                            <input type="text" class="form-control" id="modelo" name="modelo" 
+                                   value="{{ $camion->modelo }}" required maxlength="10">
+                        </div>
+
+                        <div class="d-flex justify-content-between mt-4">
+                            <a href="{{ route('camiones.index') }}" class="btn btn-secondary">
+                                ← Cancelar
+                            </a>
+                            <button type="submit" class="btn btn-primary">
+                                💾 Actualizar Camión
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-        
-        <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{ route('camiones.index') }}" class="btn btn-secondary">Cancelar</a>
-    </form>
+    </div>
 </div>
 @endsection
