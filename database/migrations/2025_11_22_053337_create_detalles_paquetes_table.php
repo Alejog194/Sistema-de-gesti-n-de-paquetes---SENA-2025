@@ -13,11 +13,14 @@ return new class extends Migration
     {
         Schema::create('detalles_paquetes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('paquete_id')->constrained('paquetes'); //clave foránea de la tabla paquetes.
-            $table->foreignId('tipo_mercancia_id')->constrained('tipo_mercancia'); //clave foránea de la tabla tipo_mercancia.
-            $table->string('dimension', 45); // VARCHAR(45) para la dimensión del paquete.
-            $table->string('peso', 45); // VARCHAR(45) para el peso del paquete.
-            $table->date('fecha_entrega'); // Fecha de entrega del paquete.
+            $table->foreignId('paquete_id')->constrained('paquetes')->onDelete('cascade');
+            
+            // ❌ QUITAR tipo_mercancia_id (no pertenece aquí)
+            // $table->foreignId('tipo_mercancia_id')->constrained('tipo_mercancia');
+            
+            $table->string('dimension', 45);
+            $table->string('peso', 45);
+            $table->date('fecha_entrega');
             $table->timestamps();
         });
     }

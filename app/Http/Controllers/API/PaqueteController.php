@@ -14,7 +14,7 @@ class PaqueteController extends Controller
      */
     public function index()
     {
-        $paquetes = Paquete::with(['tipoMercancia', 'camionero', 'camion', 'estado', 'user'])->get();
+        $paquetes = Paquete::with(['tipoMercancia', 'camionero', 'camion', 'estado'])->get();
         return response()->json([
             'success' => true,
             'data' => $paquetes
@@ -32,15 +32,13 @@ class PaqueteController extends Controller
             'tipo_mercancia_id' => 'nullable|exists:tipo_mercancia,id',
             'camion_id' => 'nullable|exists:camiones,id',
             'user_id' => 'nullable|exists:users,id',
-            'direccion' => 'required|string|max:255',
+            'direccion' => 'required|string|max:25', // Tu campo real
+            // Campos adicionales si ya los agregaste en la migración
             'codigo' => 'nullable|string|max:50|unique:paquetes',
-            'descripcion' => 'nullable|string',
+            'descripcion' => 'nullable|string|max:500',
             'peso' => 'nullable|numeric|min:0',
             'dimensiones' => 'nullable|string|max:100',
             'fecha_envio' => 'nullable|date',
-            'fecha_estimada' => 'nullable|date|after_or_equal:fecha_envio',
-            'fecha_entrega_real' => 'nullable|date|after_or_equal:fecha_envio',
-            'costo' => 'nullable|numeric|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -50,7 +48,7 @@ class PaqueteController extends Controller
             ], 422);
         }
 
-        // Generar código si no viene
+        // Si no viene código, generar uno automático
         $data = $request->all();
         if (empty($data['codigo'])) {
             $data['codigo'] = 'PKG-' . date('YmdHis') . '-' . rand(1000, 9999);
@@ -70,7 +68,7 @@ class PaqueteController extends Controller
      */
     public function show($id)
     {
-        $paquete = Paquete::with(['tipoMercancia', 'camionero', 'camion', 'estado', 'user', 'detallesPaquetes'])->find($id);
+        $paquete = Paquete::with(['tipoMercancia', 'camionero', 'camion', 'estado'])->find($id);
 
         if (!$paquete) {
             return response()->json([
@@ -105,15 +103,12 @@ class PaqueteController extends Controller
             'tipo_mercancia_id' => 'nullable|exists:tipo_mercancia,id',
             'camion_id' => 'nullable|exists:camiones,id',
             'user_id' => 'nullable|exists:users,id',
-            'direccion' => 'sometimes|string|max:255',
+            'direccion' => 'sometimes|string|max:25',
             'codigo' => 'sometimes|string|max:50|unique:paquetes,codigo,' . $id,
-            'descripcion' => 'nullable|string',
+            'descripcion' => 'nullable|string|max:500',
             'peso' => 'nullable|numeric|min:0',
             'dimensiones' => 'nullable|string|max:100',
             'fecha_envio' => 'nullable|date',
-            'fecha_estimada' => 'nullable|date|after_or_equal:fecha_envio',
-            'fecha_entrega_real' => 'nullable|date|after_or_equal:fecha_envio',
-            'costo' => 'nullable|numeric|min:0',
         ]);
 
         if ($validator->fails()) {
@@ -155,7 +150,7 @@ class PaqueteController extends Controller
     }
 
     /**
-     * Cambiar estado del paquete (usando estado_id)
+     * Cambiar estado del paquete (usando estado_id en lugar de estado)
      */
     public function cambiarEstado(Request $request, $id)
     {

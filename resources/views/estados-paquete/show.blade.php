@@ -14,8 +14,8 @@
     </div>
     
     <div class="mt-3">
-        <a href="{{ route('estado-paquetes.edit', $estadoPaquete) }}" class="btn btn-warning">Editar</a>
-        <a href="{{ route('estado-paquetes.index') }}" class="btn btn-secondary">Volver</a>
+        <a href="{{ route('estados-paquete.edit', $estadoPaquete) }}" class="btn btn-warning">Editar</a>
+        <a href="{{ route('estados-paquete.index') }}" class="btn btn-secondary">Volver</a>
     </div>
 </div>
 @endsection

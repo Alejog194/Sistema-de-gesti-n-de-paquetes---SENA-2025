@@ -24,7 +24,7 @@ class EstadoPaquete extends Model
     * obtener el estado en formato para mostrar
     */
 
-    public function gesEstadoFormateadoAttribute()
+    public function getEstadoFormateadoAttribute()
     {
         return ucfirst($this->estado); //capitaliza la primera letra del estado.
     }
@@ -33,7 +33,7 @@ class EstadoPaquete extends Model
     * verificar si es un estado final (entregado/cancelado) 
     */
 
-    public function gesEstadoFinalAttribute()
+    public function getEstadoFinalAttribute()
     {
         return in_array(strtolower($this->estado), ['entregado', 'cancelado']);
     }

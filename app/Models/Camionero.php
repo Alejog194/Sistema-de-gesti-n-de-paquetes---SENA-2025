@@ -31,7 +31,7 @@ class Camionero extends Model
         return $this->hasMany(Paquete::class, 'camionero_id');
     }
 
-    public function getNomreCompletoAttribute()
+    public function getNombreCompletoAttribute()
     {
         return $this->nombre . ' ' . $this->apellido;
     }

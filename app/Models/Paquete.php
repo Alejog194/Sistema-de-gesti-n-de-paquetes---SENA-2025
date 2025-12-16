@@ -9,54 +9,63 @@ class Paquete extends Model
 {
     use HasFactory;
 
-    /**
-     * los atributos que pueden ser llenado masivamente
-     */
-    protected $fillable = [
-        'camionero_id', //dueño principal del paquete.
-        'estado_id', //estado del paquete.
-        //'tipo_mercancia_id', //tipo de mercancía del paquete.
-        'direccion', //dirección de entrega del paquete.
+    protected $fillable = [ // Campos asignables masivamente
+        'user_id',
+        'camionero_id', 
+        'estado_id',
+        'tipo_mercancia_id',  
+        'camion_id',          
+        'direccion',
+        'codigo',
+        'descripcion',
+        'peso',
+        'dimensiones',
+        'fecha_envio',
+        'fecha_estimada',
+        'fecha_entrega_real',
+        'costo',
     ];
 
-    /**
-     * un paquete pertenece a un camionero (dueño principal).
-     * relacion uno a muchos inversa.
-     */
+    // Relaciones
     public function camionero()
     {
-        return $this->belongsTo(Camionero::class, 'camionero_id');
+        return $this->belongsTo(Camionero::class);
     }
 
-    /**
-     * un paquete tiene un estado.
-     * relacion uno a muchos inversa.
-     */
-    public function estado()                       
+    public function estado()
     {
-        return $this->belongsTo(EstadoPaquete::class, 'estado_id');
+        return $this->belongsTo(EstadoPaquete::class);
     }
 
-    /**
-     * un paquete tiene muchos detalles de paquete.
-     * relacion uno a muchos.
-     */
+    public function tipoMercancia()
+    {
+        return $this->belongsTo(TipoMercancia::class);
+    }
+
+    public function camion()
+    {
+        return $this->belongsTo(Camion::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function detallesPaquetes()
     {
-        return $this->hasMany(DetallePaquete::class, 'paquete_id');
+        return $this->hasMany(DetallePaquete::class);
     }
 
-    /**
-     * obtener la direccion formateada del paquete.
-     */
+    // Métodos de ayuda
     public function getDireccionFormateadaAttribute()
     {
-        return " Dirección: " . $this->direccion;
+        return "Dirección: " . $this->direccion;
     }
 
-    /** verificar si el paquete está entregado */
     public function getEstaEntregadoAttribute()
     {
-        return $this->estado->estado === 'Paquete Entregado';  //verificar este codigo si requiere algun cambio mas adelante, 25/11/2025 fecha creada.
+        // Ajusta según tus estados reales
+        return $this->estado && strtolower($this->estado->estado) === 'entregado';
     }
 }

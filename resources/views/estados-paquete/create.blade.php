@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Crear Nuevo Estado de Paquete</h1>
     
-    <form action="{{ route('estado-paquetes.store') }}" method="POST">
+    <form action="{{ route('estados-paquete.store') }}" method="POST">
         @csrf
         <div class="form-group mb-3">
             <label for="estado">Nombre del Estado:</label>
@@ -16,7 +16,7 @@
         </div>
         
         <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="{{ route('estado-paquetes.index') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('estados-paquete.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 @endsection

@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role', // ✅ AGREGADO: Para permitir asignación masiva del rol
     ];
 
     /**
@@ -42,4 +43,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    // ✅ MÉTODOS CORRECTOS (eliminamos up() y down() que son para migraciones)
+    
+    /**
+     * Verifica si el usuario tiene rol de administrador
+     */
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Verifica si el usuario tiene rol de usuario normal
+     */
+    public function isUser()
+    {
+        return $this->role === 'user';  
+    }
+
+    /**
+     * Relación con los paquetes del usuario.
+     */
+    public function paquetes()
+    {
+        return $this->hasMany(Paquete::class);
+    }
 }

@@ -31,8 +31,8 @@
     </div>
     
     <div class="mt-3">
-        <a href="{{ route('detalle-paquete.edit', $detallePaquete->id) }}" class="btn btn-warning">Editar</a>
-        <a href="{{ route('detalle-paquete.index') }}" class="btn btn-secondary">Volver</a>
+        <a href="{{ route('detalles-paquete.edit', $detallePaquete->id) }}" class="btn btn-warning">Editar</a>
+        <a href="{{ route('detalles-paquete.index') }}" class="btn btn-secondary">Volver</a>
     </div>
 </div>
 @endsection

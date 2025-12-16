@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Lista de Detalles de Paquetes</h1>
     
-    <a href="{{ route('detalle-paquete.create') }}" class="btn btn-primary mb-3">Nuevo Detalle</a>
+    <a href="{{ route('detalles-paquete.create') }}" class="btn btn-primary mb-3">Nuevo Detalle</a>
     
     @if(session('success'))
         <div class="alert alert-success">
@@ -46,9 +46,9 @@
                 <td>{{ $detalle->peso }}</td>
                 <td>{{ $detalle->fecha_entrega }}</td>
                 <td>
-                    <a href="{{ route('detalle-paquete.show', $detalle->id) }}" class="btn btn-info btn-sm">Ver</a>
-                    <a href="{{ route('detalle-paquete.edit', $detalle->id) }}" class="btn btn-warning btn-sm">Editar</a>
-                    <form action="{{ route('detalle-paquete.destroy', $detalle->id) }}" method="POST" style="display:inline;">
+                    <a href="{{ route('detalles-paquete.show', $detalle->id) }}" class="btn btn-info btn-sm">Ver</a>
+                    <a href="{{ route('detalles-paquete.edit', $detalle->id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ route('detalles-paquete.destroy', $detalle->id) }}" method="POST" style="display:inline;">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Eliminar detalle de paquete?')">Eliminar</button>

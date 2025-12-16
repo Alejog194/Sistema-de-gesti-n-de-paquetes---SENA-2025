@@ -12,8 +12,8 @@ class TipoMercanciaController extends Controller
      */
     public function index()
     {
-        $tipoMercancias = TipoMercancia::all();
-        return view('tipo_mercancia.index', compact('tipoMercancias'));
+        $tiposMercancia = TipoMercancia::all();
+        return view('tipos-mercancia.index', compact('tiposMercancia'));
     }
 
     /**
@@ -21,7 +21,7 @@ class TipoMercanciaController extends Controller
      */
     public function create()
     {
-        return view('tipo_mercancia.create');
+        return view('tipos-mercancia.create');
     }
 
     /**
@@ -30,12 +30,14 @@ class TipoMercanciaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'tipo' => 'required|string|max:45|unique:tipo_mercancia,tipo',
+            'tipo' => 'required|string|max:100|unique:tipo_mercancia,tipo',
         ]);
 
-        TipoMercancia::create($request->all());
+        TipoMercancia::create([
+            'tipo' => $request->tipo,
+        ]);
 
-        return redirect()->route('tipo_mercancia.index')
+        return redirect()->route('tipos-mercancia.index')  // CAMBIADO: tipo-mercancia → tipos-mercancia
             ->with('success', 'Tipo de mercancía creado exitosamente.');
     }
 
@@ -44,7 +46,7 @@ class TipoMercanciaController extends Controller
      */
     public function show(TipoMercancia $tipoMercancia)
     {
-        return view('tipo_mercancia.show', compact('tipoMercancia'));
+        return view('tipos-mercancia.show', compact('tipoMercancia'));
     }
 
     /**
@@ -52,7 +54,7 @@ class TipoMercanciaController extends Controller
      */
     public function edit(TipoMercancia $tipoMercancia)
     {
-        return view('tipo_mercancia.edit', compact('tipoMercancia'));
+        return view('tipos-mercancia.edit', compact('tipoMercancia'));
     }
 
     /**
@@ -61,23 +63,25 @@ class TipoMercanciaController extends Controller
     public function update(Request $request, TipoMercancia $tipoMercancia)
     {
         $request->validate([
-            'tipo' => 'required|string|max:45|unique:tipo_mercancia,tipo,' . $tipoMercancia->id,
+            'tipo' => 'required|string|max:100|unique:tipo_mercancia,tipo,' . $tipoMercancia->id,
         ]);
 
-        $tipoMercancia->update($request->all());
+        $tipoMercancia->update([
+            'tipo' => $request->tipo,
+        ]);
 
-        return redirect()->route('tipo_mercancia.index')
+        return redirect()->route('tipos-mercancia.index')  // CAMBIADO: tipo-mercancia → tipos-mercancia
             ->with('success', 'Tipo de mercancía actualizado exitosamente.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TipoMercancia $tipoMercancia)
+    public function destroy(TipoMercancia $tipoMercancia) //TipoMercancia es el modelo y $tipoMercancia es la variable que recibe el objeto a eliminar.
     {
         $tipoMercancia->delete();
 
-        return redirect()->route('tipo_mercancia.index')
+        return redirect()->route('tipos-mercancia.index')  // CAMBIADO: tipo-mercancia → tipos-mercancia
             ->with('success', 'Tipo de mercancía eliminado exitosamente.');
     }
 }

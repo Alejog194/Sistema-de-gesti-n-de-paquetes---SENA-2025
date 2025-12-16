@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Crear Nuevo Detalle de Paquete</h1>
     
-    <form action="{{ route('detalle-paquete.store') }}" method="POST">
+    <form action="{{ route('detalles-paquete.store') }}" method="POST">
         @csrf
         
         <div class="form-group mb-3">
@@ -47,7 +47,7 @@
         </div>
         
         <button type="submit" class="btn btn-success">Guardar</button>
-        <a href="{{ route('detalle-paquete.index') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('detalles-paquete.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 @endsection

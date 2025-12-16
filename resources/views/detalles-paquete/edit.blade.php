@@ -4,7 +4,7 @@
 <div class="container">
     <h1>Editar Detalle de Paquete</h1>
     
-    <form action="{{ route('detalle-paquete.update', $detallePaquete->id) }}" method="POST">
+    <form action="{{ route('detalles-paquete.update', $detallePaquete->id) }}" method="POST">
         @csrf
         @method('PUT')
         
@@ -48,7 +48,7 @@
         </div>
         
         <button type="submit" class="btn btn-primary">Actualizar</button>
-        <a href="{{ route('detalle-paquete.index') }}" class="btn btn-secondary">Cancelar</a>
+        <a href="{{ route('detalles-paquete.index') }}" class="btn btn-secondary">Cancelar</a>
     </form>
 </div>
 @endsection

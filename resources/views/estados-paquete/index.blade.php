@@ -7,7 +7,7 @@
     <h1 style="color: #333; margin-bottom: 10px;">🏷️ Estados de Paquetes</h1>
     <p style="color: #666;">Gestiona los diferentes estados que pueden tener los paquetes en el sistema.</p>
     
-    <a href="{{ route('estado-paquetes.create') }}" 
+    <a href="{{ route('estados-paquete.create') }}" 
        style="background: #0d6efd; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block;">
         ＋ Crear Nuevo Estado
     </a>
@@ -32,15 +32,15 @@
                     <td style="padding: 15px; font-weight: 500;">{{ $estado->estado }}</td>
                     <td style="padding: 15px; color: #666;">{{ $estado->created_at->format('d/m/Y') }}</td>
                     <td style="padding: 15px; text-align: center;">
-                        <a href="{{ route('estado-paquetes.show', $estado) }}" 
+                        <a href="{{ route('estados-paquete.show', $estado) }}" 
                            style="background: #17a2b8; color: white; padding: 6px 12px; text-decoration: none; border-radius: 4px; margin: 2px;">
                             👁️ Ver
                         </a>
-                        <a href="{{ route('estado-paquetes.edit', $estado) }}" 
+                        <a href="{{ route('estados-paquete.edit', $estado) }}" 
                            style="background: #ffc107; color: #212529; padding: 6px 12px; text-decoration: none; border-radius: 4px; margin: 2px;">
                             ✏️ Editar
                         </a>
-                        <form action="{{ route('estado-paquetes.destroy', $estado) }}" method="POST" style="display: inline;">
+                        <form action="{{ route('estados-paquete.destroy', $estado) }}" method="POST" style="display: inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" 
@@ -60,7 +60,7 @@
 <div style="background: #e7f3ff; padding: 20px; border-radius: 8px; border: 1px solid #b3d7ff;">
     <p style="margin: 0; color: #004085;">
         ℹ️ No hay estados de paquetes registrados aún.
-        <a href="{{ route('estado-paquetes.create') }}" style="color: #0056b3; font-weight: bold;">Crea el primero</a>
+        <a href="{{ route('estados-paquete.create') }}" style="color: #0056b3; font-weight: bold;">Crea el primero</a>
     </p>
 </div>
 @endif
