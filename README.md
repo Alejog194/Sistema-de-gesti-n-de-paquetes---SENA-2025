@@ -1,66 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🚚 Sena Delivery - Sistema de Gestión de Paquetes
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge&logo=php)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-4479A1?style=for-the-badge&logo=mysql)
+![Sanctum](https://img.shields.io/badge/Sanctum-Auth-FF2D20?style=for-the-badge&logo=laravel)
+![API REST](https://img.shields.io/badge/API-REST-00C7B7?style=for-the-badge)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Sistema completo de gestión logística para transporte de paquetes con autenticación dual (Web + API)**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+[Características](#-características) • [Instalación](#-instalación) • [Documentación API](#-documentación-api) • [Estructura](#-estructura-del-proyecto) • [Despliegue](#-despliegue)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+</div>
 
-## Learning Laravel
+## 📋 Tabla de Contenidos
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- [Descripción del Proyecto](#-descripción-del-proyecto)
+- [Características](#-características)
+- [Tecnologías Utilizadas](#-tecnologías-utilizadas)
+- [Instalación](#-instalación)
+- [Configuración](#-configuración)
+- [Estructura del Proyecto](#-estructura-del-proyecto)
+- [Documentación API](#-documentación-api)
+- [Roles de Usuario](#-roles-de-usuario)
+- [Base de Datos](#-base-de-datos)
+- [Testing](#-testing)
+- [Despliegue](#-despliegue)
+- [Contribución](#-contribución)
+- [Licencia](#-licencia)
+- [Contacto](#-contacto)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🎯 Descripción del Proyecto
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Sena Delivery** es un sistema de gestión logística completo desarrollado con Laravel 10 que permite administrar el ciclo completo de transporte de paquetes, desde la creación hasta la entrega.
 
-## Laravel Sponsors
+### 🎯 Objetivos Principales
+- ✅ Gestión integral de paquetes y envíos
+- ✅ Sistema de autenticación dual (Web + API)
+- ✅ Control de acceso basado en roles (Admin/Usuario)
+- ✅ API RESTful documentada
+- ✅ Panel administrativo completo
+- ✅ Seguridad con Laravel Sanctum
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## ✨ Características
 
-### Premium Partners
+### 🔐 Autenticación y Seguridad
+- **Autenticación dual**: Sesiones web + Tokens API (Sanctum)
+- **Roles de usuario**: Administrador y Usuario normal
+- **Middleware de protección**: Rutas protegidas por rol
+- **Validación de datos**: Form Requests y reglas de negocio
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### 📦 Gestión de Paquetes
+- ✅ Creación, lectura, actualización y eliminación de paquetes
+- ✅ Seguimiento de estados (creado, en tránsito, entregado, etc.)
+- ✅ Gestión de tipos de mercancía
+- ✅ Asignación a camiones y camioneros
+- ✅ Detalles completos de envíos
 
-## Contributing
+### 👥 Gestión de Usuarios
+- ✅ Registro y login de usuarios
+- ✅ Perfiles de usuario
+- ✅ Dashboard personalizado (Admin/Usuario)
+- ✅ Gestión de usuarios (solo administradores)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🚚 Gestión Logística
+- ✅ Control de camiones (vehículos)
+- ✅ Gestión de camioneros (conductores)
+- ✅ Estados de paquetes personalizables
+- ✅ Tipos de mercancía configurables
 
-## Code of Conduct
+### 🌐 API RESTful
+- ✅ Endpoints documentados
+- ✅ Respuestas JSON estandarizadas
+- ✅ Paginación y filtros
+- ✅ Manejo de errores consistente
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 🛠 Tecnologías Utilizadas
 
-## Security Vulnerabilities
+### Backend
+- **PHP 8.1+** - Lenguaje de programación
+- **Laravel 10.x** - Framework PHP
+- **Laravel Sanctum** - Autenticación API
+- **MySQL 8.0** - Base de datos
+- **Composer** - Gestión de dependencias
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Frontend (Web)
+- **Blade Templates** - Motor de plantillas
+- **Bootstrap 5** - Framework CSS
+- **JavaScript Vanilla** - Interactividad
+- **Axios** - Cliente HTTP para API
 
-## License
+### Herramientas de Desarrollo
+- **PHPUnit** - Testing
+- **Swagger/OpenAPI** - Documentación
+- **Git** - Control de versiones
+- **Docker** (opcional) - Contenedorización
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🚀 Instalación
+
+### Requisitos Previos
+- PHP 8.1 o superior
+- Composer 2.0 o superior
+- MySQL 8.0 o superior
+- Node.js 16+ (para assets frontend)
+- Git
+
+### Pasos de Instalación
+
+1. **Clonar el repositorio**
+```bash
+git clone https://github.com/alejog194/sena-delivery.git
+cd sena-delivery
